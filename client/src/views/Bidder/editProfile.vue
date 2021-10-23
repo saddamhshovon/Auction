@@ -136,7 +136,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Balance: {{ user.deposit }}</h2>
                     <!-- <h2 class="card-title">  </h2> -->
-                    <div class="form-control">
+                    <!-- <div class="form-control">
                     <input v-model="deposit" type="number" placeholder="Add Money" class="input input-bordered">
                     <button @click="addMoney" :class="btn_loading ? 'btn mt-5 loading' : 'btn mt-5'">Add Money</button> 
                     <div v-if="success" class="alert alert-success mt-5">
@@ -144,7 +144,7 @@
                         <label>Deposit Success!</label>
                     </div>
                     </div>
-                </div>
+                </div> -->
                 </div>
             </div>
             <div class="card text-center shadow-xl h-72">

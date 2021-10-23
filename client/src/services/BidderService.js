@@ -30,7 +30,7 @@ export default {
     },
 
     deposit(data){
-        return Api().post('bidder/deposit/', data);
+        return Api().post('admin/deposit/', data);
     },
 
     getUserProducts(id){

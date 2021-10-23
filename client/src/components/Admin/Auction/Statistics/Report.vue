@@ -54,6 +54,7 @@
                             <th class="px-4 py-3">Result Date</th>
                             <th class="px-4 py-3">Winner Bid</th>
                             <th class="px-4 py-3">Bill(Added 2% Charge)</th>
+                            <th class="px-4 py-3">Payment Status</th>
                             <th class="px-4 py-3">Profit</th>
                         </tr>
                     </thead>
@@ -107,6 +108,33 @@
                                     </div>
                                 </div>
                             </td>
+                            <td class="px-4 py-3" v-if="auction.is_delivered==1">
+                                <div class="flex items-center text-sm">
+                                    <div>
+                                        <p class="font-semibold">
+                                            PAID
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3" v-else-if="auction.is_delivered==0">
+                                <div class="flex items-center text-sm">
+                                    <div>
+                                        <p class="font-semibold">
+                                            UNPAID
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3" v-else-if="auction.is_delivered==2">
+                                <div class="flex items-center text-sm">
+                                    <div>
+                                        <p class="font-semibold">
+                                            Cut Fee
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <div>
@@ -146,8 +174,9 @@ function sumProfit(){
     let sum = 0;
 
     for(let i=0; i < l; i++){
-
-    sum = sum+((auctions[i].winner_bid)*0.02);
+        if(auctions[i].is_delivered==1){
+                sum = sum+((auctions[i].winner_bid)*0.02);
+        }
     
     }
     return sum;

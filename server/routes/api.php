@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:api'], function ()
         Route::resource('/products', ProductController::class);
         Route::resource('/auction', AuctionController::class);
         Route::get('auction-data/past', [AuctionController::class, 'PastAuction']);
+        Route::post('deposit', [UserController::class, 'deposit']);
         
         
         Route::get('auction-data/past/{id}', [AuctionController::class, 'updateAuctionStatus']);

@@ -142,7 +142,23 @@
                 <div class="card-body">
                     <h2 class="card-title">NID Back</h2>
                 </div>
-                </div> 
+                
+                </div>
+                <div class="card text-center shadow-xl h-72">
+                <div class="card-body">
+                    <h2 class="card-title">Balance: {{ user.deposit }}</h2>
+                    <!-- <h2 class="card-title">  </h2> -->
+                    <div class="form-control">
+                    <input v-model="deposit" type="number" placeholder="Add Money" class="input input-bordered">
+                    <button @click="addMoney(this.$route.params.id, deposit)" :class="btn_loading ? 'btn mt-5 loading' : 'btn mt-5'">Add Money</button> 
+                    <div v-if="success" class="alert alert-success mt-5">
+                    <div class="flex-1">
+                        <label>Deposit Success!</label>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
                  <div class="card text-center shadow-xl h-72">
                      <!-- <div class="w-10 h-10 border"> -->
                         <figure class="px-10 pt-10 ">
@@ -162,6 +178,7 @@
 <script>
 import env from '../../../config/env';
 import BidderService from '../../../services/BidderService';
+import { useRouter } from "vue-router";
 export default {
     name:'BidderUpdate',
     data() {
@@ -190,10 +207,14 @@ export default {
                 nid_back_img:"/images/pre-upload.png",
                 vat_no:null,
                 vat_img:"/images/pre-upload.png",
-                is_approved:0
+                is_approved:0,
+                deposit:0
             },
             msg:'',
             path: '',
+            deposit:0,
+            success: false,
+            btn_loading:false,
         }
     },
     created() {
@@ -208,6 +229,7 @@ export default {
                     this.loginType = false;
                 }
             },
+           
             setImagePath(){
                 if(this.user.nid_front_img !== null){
                     this.user.nid_front_img = this.path + "/" + this.user.nid_front_img;
@@ -266,6 +288,33 @@ export default {
                     vm.user.vat_img = e.target.result;
                 };
                 reader.readAsDataURL(file);
+            },
+             addMoney(id,deposit){
+                this.btn_loading = true;
+                console.log(id);
+                console.log(deposit);
+                BidderService.deposit({
+                    user_id: id,
+                    deposit: deposit
+                })
+                .then((res)=>{
+                    this.user.deposit = res.data.deposit;
+                    this.deposit = 0;
+                    this.success = true;
+                    this.btn_loading = false;
+                    Store.commit('setDeposit', { deposit: res.data.deposit})
+                })
+                .catch(error => {
+					let data = error.response.data
+                    for (let key in data.errors) {
+						this.errors[key] = []
+						let errorMessage = data.errors[key]
+						if (errorMessage){
+							this.errors[key] = errorMessage
+						}
+					}
+					
+				})
             },
             updateUser(id, user){
                 BidderService.update(id, user)

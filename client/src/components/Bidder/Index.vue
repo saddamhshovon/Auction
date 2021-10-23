@@ -59,8 +59,9 @@
                         <div class="flex flex-row items-center">
                             
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Payable</h5>
-                                <h3 class="font-bold text-3xl">{{ items.payables ? items.payables : "0" }}<span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
+                                <h5 class="font-bold uppercase text-gray-600">Payable</h5> //
+                                <!-- <h3 class="font-bold text-3xl">{{ items.payables ? items.payables : "0" }}<span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3> -->
+                                <h3 class="font-bold text-3xl">{{payAbles()}}<span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -118,7 +119,10 @@
             
 <script setup>
 import { ref } from "vue";
+import AllService from "../../../../services/AllService";
 import BidderService from '../../services/BidderService';
+const auctionresponse = ref(await AllService.getallAuction());
+const auctions = auctionresponse.value.data.data;
 const userId = Store.state.currentUser.id;
 const bidderInfo = ref(await BidderService.getBidder(userId));
 const is_approved = bidderInfo.value.data.bidder.is_approved;
@@ -149,6 +153,22 @@ function declineProduct(auction_id, index){
         console.log(error);
         btn_loading = false;
     });
+}
+
+function payAbles(){
+    if(items.payables==0 && auctions.){
+
+    }
+    let l = Object.keys(auctions).length;
+    let sum = 0;
+
+    for(let i=0; i < l; i++){
+        if(auctions[i].is_delivered==1){
+            sum = sum+((auctions[i].winner_bid)*0.02);
+        }
+    
+    }
+    return sum;
 }
 
 function payNow(auction_id, winner_bid, index){
