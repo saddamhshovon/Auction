@@ -25,6 +25,8 @@ Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('auction/create/getproduct/{id}', [ProductController::class, 'getproductsbyid']);
 
+Route::get('/pop_cat', [AuctionController::class, 'popularCategory']);
+
 Route::group(['middleware' => 'auth:api'], function ()
 {
     //public routes

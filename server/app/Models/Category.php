@@ -10,4 +10,9 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'description'];
+
+    public function auctions() 
+    {
+        return $this->hasMany(Auction::class, 'category_id');
+    }
 }

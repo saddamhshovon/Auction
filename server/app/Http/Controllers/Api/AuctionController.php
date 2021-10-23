@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auction\StoreAuctionRequest;
 use App\Http\Requests\Auction\UpdateAuctionRequest;
 use App\Models\Auction;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
@@ -220,5 +221,12 @@ class AuctionController extends Controller
                 'messsage' => 'Auction Delete Error'
             ], 400);
         }
+    }
+
+    public function popularCategory(){
+        $categories = Category::withCount(['auctions'=> function ($query) {
+            $query->where('is_delivered', 1);
+        }])->get()->sortByDesc('auctions_count')->take(1);
+        return $categories;
     }
 }
