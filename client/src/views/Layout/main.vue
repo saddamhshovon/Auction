@@ -1,16 +1,16 @@
 <template>
 	<div :class="{ dark: dark }">
-		<div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': true }">
+		<div class="flex h-screen bg-gray-50" :class="{ 'overflow-hidden': true }">
 			<thesidebar></thesidebar>
 			<div class="flex flex-col flex-1 w-full ">
-				<header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800 bg-gradient-to-r from-green-500 to-blue-200">
+				<header class="z-10 py-4 bg-gray-800 shadow-md">
 					<div class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
-						<router-link :to="{ name:'visitor.home' }">
+						<!-- <router-link :to="{ name:'visitor.home' }">
 							<button class="btn bg-green-600 border-green-600 mr-10">
 								<i class="fas fa-home mr-2"></i>
 								Public Site
 							</button>
-						</router-link>
+						</router-link> -->
 						
 						<button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple" @click="toggleSideMenu" aria-label="Menu">
                             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

@@ -1,10 +1,10 @@
 <template>
 <div>
-    <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
-        <div class="px-2 mx-2 navbar-start">
+    <div class="navbar mb-2 shadow-lg bg-gray-800 text-neutral-content">
+        <div class="px-2 navbar-start">
             <router-link :to="{name: 'visitor.home'}">
-                <span class="text-lg font-bold">
-                    Auction
+                <span class="text-4xl font-semibold">
+                    Auction System
                 </span>
             </router-link>  
         </div> 
@@ -36,23 +36,26 @@
             </svg>
             </button> -->
             <router-link :to="{name: 'visitor.home'}">
-                    <span class="text-lg font-bold">
-                        Home
-                    </span>
-                </router-link>  
+                 <span class="text-lg px-3">Home</span>
+            </router-link>  
             <router-link :to="{name: 'visitor.product.categorised'}">
-                <button class="btn mt-5 mb-5">All Auctions</button> 
+                <!-- <button class="btn mt-5 mb-5">All Auctions</button>  -->
+                <span class="text-lg px-3">All Auctions</span>
             </router-link>
             <router-link v-if="is_logged_in" :to="{name: homeRoute}">
-                <button class="btn btn-info rounded-md mr-10 text-white">Dashboard</button> 
+                <!-- <button class="btn btn-info rounded-md mr-10 text-white">Dashboard</button>  -->
+                <span class="text-lg px-3">Dashboard</span>
             </router-link>
             <router-link v-if="!is_logged_in" :to="{name: 'auth.register'}">
-                <button class="btn btn-info rounded-md mr-5 text-white">Sign Up</button> 
+                <!-- <button class="btn btn-info rounded-md mr-5 text-white">Sign Up</button>  -->
+                <span class="text-lg px-3">Sign Up</span>
             </router-link>
             <router-link v-if="!is_logged_in" :to="{name: 'auth.login'}">
-                <button class="btn btn-info rounded-md mr-10 text-white">Login</button> 
+                <!-- <button class="btn btn-info rounded-md mr-10 text-white">Login</button>  -->
+                <span class="text-lg px-3">Login</span>
             </router-link>
-            <button @click.prevent="logout" v-else class="btn btn-accent rounded-md mr-10 text-white">Log Out</button> 
+            <!-- <button @click.prevent="logout" v-else class="btn btn-accent rounded-md mr-10 text-white">Log Out</button>  -->
+            <a @click.prevent="logout" v-else class="text-lg px-3 cursor-pointer">Log Out</a>
             
         </div>
     </div>
