@@ -30,7 +30,7 @@
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Popular Category</h5>
                                 <!-- <h3 class="font-bold text-3xl">{{ running_auctions ? running_auctions : "0" }}</h3> -->
-                                <h3 class="font-bold text-xl">{{ popcat[0].name }}</h3>
+                                <h3 class="font-bold text-xl">{{ poppucat() }}</h3>
                             </div>
                         </div> 
                     </div>
@@ -173,9 +173,11 @@ const past_auctions = allcount.value.data.past_auctions;
 const running_auctions = allcount.value.data.running_auctions;
 const upcoming_auctions = allcount.value.data.upcoming_auctions;
 
-// function poppucat(){
-//     console.log(auctions);
-// }
+function poppucat(){
+    let key_s = Object.keys(popcat);
+    // console.log(key_s);
+    return popcat[key_s].name;
+}
 
 function sumProfit(){
     let l = Object.keys(auctions).length;

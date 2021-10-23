@@ -392,7 +392,7 @@ class UserController extends Controller
         }else{
             return response()->json([
                 'status' => false,
-                'message' => 'Insufficient Funds!'
+                'message' => 'Bid amount should be greater-than base price & highest bid!'
             ], 201);
         }
         
