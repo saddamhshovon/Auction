@@ -28,6 +28,35 @@
                         <div class="flex flex-row items-center">
                             
                             <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-600">total cutfee</h5>
+                                <!-- <h3 class="font-bold text-3xl">{{ running_auctions ? running_auctions : "0" }}</h3> -->
+                                <h3 class="font-bold text-xl">{{ cutFee() }}</h3>
+                            </div>
+                        </div> 
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                   
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
+                        <div class="flex flex-row items-center">
+                            
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-600">Total balance</h5>
+                                <h3 class="font-bold text-xl">{{ totalBalance() }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/2 p-6">
+                    
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
+                        <div class="flex flex-row items-center">
+                            
+                            <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Popular Category</h5>
                                 <!-- <h3 class="font-bold text-3xl">{{ running_auctions ? running_auctions : "0" }}</h3> -->
                                 <h3 class="font-bold text-xl">{{ poppucat() }}</h3>
@@ -56,7 +85,7 @@
                             <th class="px-4 py-3">Winner Bid</th>
                             <th class="px-4 py-3">Bill(Added 2% Charge)</th>
                             <th class="px-4 py-3">Payment Status</th>
-                            <th class="px-4 py-3">Profit</th>
+                            <th class="px-4 py-3">Profit/fee</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -109,26 +138,22 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-3" v-if="auction.is_delivered==1">
-                                <div class="flex items-center text-sm">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm" v-if="auction.is_delivered==1">
                                     <div>
                                         <p class="font-semibold">
                                             PAID
                                         </p>
                                     </div>
                                 </div>
-                            </td>
-                            <td class="px-4 py-3" v-else-if="auction.is_delivered==0">
-                                <div class="flex items-center text-sm">
+                                <div class="flex items-center text-sm" v-else-if="auction.is_delivered==0">
                                     <div>
                                         <p class="font-semibold">
                                             UNPAID
                                         </p>
                                     </div>
                                 </div>
-                            </td>
-                            <td class="px-4 py-3" v-else-if="auction.is_delivered==2">
-                                <div class="flex items-center text-sm">
+                                <div class="flex items-center text-sm" v-else-if="auction.is_delivered==2">
                                     <div>
                                         <p class="font-semibold">
                                             Cut Fee
@@ -137,13 +162,34 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3">
-                                <div class="flex items-center text-sm">
+                                <div class="flex items-center text-sm" v-if="auction.is_delivered==0 || !auction.winner_bid">
                                     <div>
                                         <p class="font-semibold">
-                                            {{ (auction.winner_bid)*0.02 }}
+                                            {{ 0 }}
                                         </p>
                                     </div>
                                 </div>
+                                <div class="flex items-center text-sm" v-else-if="auction.is_delivered==1">
+                                    <div>
+                                        <p class="font-semibold">
+                                            {{ (auction.winner_bid)*.02 }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center text-sm" v-else-if="auction.is_delivered==2 && auction.winner_bid">
+                                    <div>
+                                        <p class="font-semibold">
+                                            {{ auction.base_price }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- <div class="flex items-center text-sm" v-else-if="!auction.winner_bid">
+                                    <div>
+                                        <p class="font-semibold">
+                                            {{ 0 }}
+                                        </p>
+                                    </div>
+                                </div> -->
                             </td>
                         </tr>
                     </tbody>
@@ -189,6 +235,25 @@ function sumProfit(){
         }
     
     }
+    return sum;
+}
+function cutFee(){
+    let l = Object.keys(auctions).length;
+    let sum = 0;
+
+    for(let i=0; i < l; i++){
+        if(auctions[i].is_delivered==2 && auctions[i].winner_bid){
+                sum = sum+(auctions[i].base_price);
+        }
+    
+    }
+    return sum;
+}
+function totalBalance(){
+    let sum = 0;
+    let profit = this.sumProfit();
+    let cutfee = this.cutFee();
+    sum = profit + cutfee;
     return sum;
 }
 </script>

@@ -167,6 +167,7 @@ class UserController extends Controller
                     ->count();
         $payables = Auction::join('products', 'products.id', 'auctions.product_id')
                     ->where('auctions.user_id', $id)
+                    ->where('auctions.is_delivered', 0)
                     ->select('auctions.*', 'products.product_name')
                     ->where('auctions.close_time', '<', Carbon::now())
                     ->where('auctions.paying_time', '>', Carbon::now())
@@ -200,6 +201,7 @@ class UserController extends Controller
         date_default_timezone_set("Asia/Dhaka");
         $products = Auction::join('products', 'products.id', 'auctions.product_id')
                             ->where('auctions.user_id', $id)
+                            ->where('auctions.is_delivered', 0)
                             ->select('auctions.*', 'products.product_name')
                             ->where('auctions.close_time', '<', Carbon::now())
                             ->where('auctions.paying_time', '>', Carbon::now())
