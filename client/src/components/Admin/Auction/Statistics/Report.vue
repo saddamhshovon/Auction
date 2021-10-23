@@ -174,10 +174,9 @@ const running_auctions = allcount.value.data.running_auctions;
 const upcoming_auctions = allcount.value.data.upcoming_auctions;
 
 function poppucat(){
-    let foundKeys = Object.keys(popcat);
-    
-    console.log(foundKeys);
-    return popcat[foundKeys].name;
+    let key_s = Object.keys(popcat);
+    // console.log(key_s);
+    return popcat[key_s].name;
 }
 
 function sumProfit(){

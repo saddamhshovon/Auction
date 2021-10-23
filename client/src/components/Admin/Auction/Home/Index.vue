@@ -6,7 +6,11 @@
                 <div class="rounded-tl-4xl bg-gradient-to-r from-white-300 to-white-600 p-4 text-2xl text-black">
                     <h3 class="font-bold pl-2">Analytics</h3>
                 </div>
+                <!-- <div class="mb-3 mx-124">
+                <input @keyup="searchProduct()" class="input input-primary input-bordered float-right" type="text" placeholder="Search..." />
+                </div> -->
             </div>
+            
 
             <div class="flex flex-wrap">
                
@@ -184,6 +188,7 @@ import { ref } from "vue";
 import moment from 'moment';
 import AllService from "../../../../services/AllService";
 import AuctionService from "../../../../services/AuctionService";
+// import ProductService from "../../../../services/ProductService";
 const auctionresponse = ref(await AllService.getallAuction());
 const auctions = auctionresponse.value.data.data;
 const allcount = ref(await AllService.getallCount());
@@ -193,4 +198,16 @@ const products = allcount.value.data.products;
 const past_auctions = allcount.value.data.past_auctions;
 const running_auctions = allcount.value.data.running_auctions;
 const upcoming_auctions = allcount.value.data.upcoming_auctions;
+// function searchProduct(e){
+//             // e.target.value = e.target.value.toLowerCase();
+//             var result  = this.products_data.filter(a=>{
+//                 if(a.product_name.toLowerCase().includes(e.target.value.toLowerCase()) === true){
+//                     return true;
+//                 }else{
+//                     return false;
+//                 }
+//             });
+//             this.products = [...result];
+            
+//         }
 </script>

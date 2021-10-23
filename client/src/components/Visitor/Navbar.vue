@@ -35,6 +35,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>             
             </svg>
             </button> -->
+            <router-link :to="{name: 'visitor.home'}">
+                    <span class="text-lg font-bold">
+                        Home
+                    </span>
+                </router-link>  
+            <router-link :to="{name: 'visitor.product.categorised'}">
+                <button class="btn mt-5 mb-5">All Auctions</button> 
+            </router-link>
             <router-link v-if="is_logged_in" :to="{name: homeRoute}">
                 <button class="btn btn-info rounded-md mr-10 text-white">Dashboard</button> 
             </router-link>
