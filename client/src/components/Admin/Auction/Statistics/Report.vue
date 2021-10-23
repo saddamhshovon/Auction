@@ -16,7 +16,7 @@
                             
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Total Profit</h5>
-                                <h3 class="font-bold text-3xl">{{ sumProfit() }}</h3>
+                                <h3 class="font-bold text-xl">{{ sumProfit() }}</h3>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,8 @@
                             
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Popular Category</h5>
-                                <h3 class="font-bold text-3xl">{{ running_auctions ? running_auctions : "0" }}</h3>
+                                <!-- <h3 class="font-bold text-3xl">{{ running_auctions ? running_auctions : "0" }}</h3> -->
+                                <h3 class="font-bold text-xl">{{ popcat[0].name }}</h3>
                             </div>
                         </div> 
                     </div>
@@ -159,8 +160,11 @@ import { ref } from "vue";
 import moment from 'moment';
 import AllService from "../../../../services/AllService";
 import AuctionService from "../../../../services/AuctionService";
+import CategoryService from "../../../../services/CategoryService";
 const auctionresponse = ref(await AllService.getallAuction());
 const auctions = auctionresponse.value.data.data;
+const catresponse = ref(await CategoryService.popCat());
+const popcat = catresponse.value.data;
 const allcount = ref(await AllService.getallCount());
 const users = allcount.value.data.users;
 const categories = allcount.value.data.categories;
@@ -168,6 +172,10 @@ const products = allcount.value.data.products;
 const past_auctions = allcount.value.data.past_auctions;
 const running_auctions = allcount.value.data.running_auctions;
 const upcoming_auctions = allcount.value.data.upcoming_auctions;
+
+// function poppucat(){
+//     console.log(auctions);
+// }
 
 function sumProfit(){
     let l = Object.keys(auctions).length;

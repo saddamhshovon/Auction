@@ -25,7 +25,7 @@ Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('auction/create/getproduct/{id}', [ProductController::class, 'getproductsbyid']);
 
-Route::get('/pop_cat', [AuctionController::class, 'popularCategory']);
+
 
 Route::group(['middleware' => 'auth:api'], function ()
 {
@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth:api'], function ()
         Route::resource('/auction', AuctionController::class);
         Route::get('auction-data/past', [AuctionController::class, 'PastAuction']);
         Route::post('deposit', [UserController::class, 'deposit']);
-        
+        Route::get('/pop_cat', [AuctionController::class, 'popularCategory']);
         
         Route::get('auction-data/past/{id}', [AuctionController::class, 'updateAuctionStatus']);
         

@@ -11,5 +11,8 @@ export default {
 
     update(id, category) {
         return Api().put('admin/categories/' + id, category);
+    },
+    popCat(){
+        return Api().get('admin/pop_cat');
     }
 }
