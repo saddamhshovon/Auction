@@ -1,27 +1,27 @@
 <template>
 <div class="mt-10 grid grid-flow-col gap-5 text-center auto-cols-max">
-    <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+    <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
         <span class="font-mono text-5xl countdown">
         <span :style="'--value:'+timer.days.value"></span>
         </span>
             days 
         
     </div> 
-    <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+    <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
         <span class="font-mono text-5xl countdown">
         <span :style="'--value:'+timer.hours.value"></span>
         </span>
             hours
         
     </div> 
-    <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+    <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
         <span class="font-mono text-5xl countdown">
         <span :style="'--value:'+timer.minutes.value"></span>
         </span>
             min 
         
     </div> 
-    <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+    <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
         <span class="font-mono text-5xl countdown">
         <span :style="'--value:'+timer.seconds.value"></span>
         </span>

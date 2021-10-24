@@ -1,42 +1,42 @@
 <template>
-<div>
+<div class="container mx-auto">
     <NavBar/>
     <div class="grid grid-cols-2 gap-4">
         <div class="grid grid-cols-2 gap-4">
-            <div class="card text-center shadow-xl h-72 text-center">
+            <div class="card text-center shadow-xl rounded-none h-72">
                 <figure class="pt-10 object-contain h-48 w-full">
-                    <img :src="auction.front_image" class="rounded-xl object-contain h-32 w-full">
+                    <img :src="auction.front_image" class="rounded-none object-contain h-32 w-full">
                 </figure> 
                 <div class="card-body">
                     <h2 class="card-title">Front</h2>
                 </div>
             </div>
-            <div class="card text-center shadow-xl h-72 text-center">
+            <div class="card text-center shadow-xl h-72 rounded-none">
                 <figure class="pt-10 object-contain h-48 w-full">
-                    <img :src="auction.back_image" class="rounded-xl object-contain h-32 w-full">
+                    <img :src="auction.back_image" class="rounded-none object-contain h-32 w-full">
                 </figure> 
                 <div class="card-body">
                     <h2 class="card-title">Back</h2>
                 </div>
             </div>
-            <div class="card text-center shadow-xl h-72 text-center">
+            <div class="card text-center shadow-xl h-72 rounded-none">
                 <figure class="pt-10 object-contain h-48 w-full">
-                    <img :src="auction.left_image" class="rounded-xl object-contain h-32 w-full">
+                    <img :src="auction.left_image" class="rounded-none object-contain h-32 w-full">
                 </figure> 
                 <div class="card-body">
                     <h2 class="card-title">Left</h2>
                 </div>
             </div>
-            <div class="card text-center shadow-xl h-72 text-center">
+            <div class="card text-center shadow-xl h-72 rounded-none">
                 <figure class="pt-10 object-contain h-48 w-full">
-                    <img :src="auction.right_image" class="rounded-xl object-contain h-32 w-full">
+                    <img :src="auction.right_image" class="rounded-none object-contain h-32 w-full">
                 </figure> 
                 <div class="card-body">
                     <h2 class="card-title">Right</h2>
                 </div>
             </div>
         </div>
-        <div class="card lg:card-side bordered">
+        <div class="card lg:card-side bordered rounded-none">
             <div class="card-body">
                 <h2 class="card-title">Product: {{ auction.product_name }}</h2> 
                 <h2 class="text-lg font-bold">Description:</h2>
@@ -54,11 +54,11 @@
                  <input type="text" placeholder="Bid" class="input input-bordered">
                 </div>  -->
                 <div class="card-actions mt-10" v-if="can_bid">
-                    <input v-model="bid.bidding_price" :disabled="!is_logged_in" type="number" placeholder="00.0" class="input input-bordered">
-                    <button  @click="bidProduct" :disabled="!is_logged_in" :class="btn_loading ? 'ml-10 btn btn-primary loading': 'ml-10 btn btn-primary'">Bid</button> 
+                    <input v-model="bid.bidding_price" :disabled="!is_logged_in" type="number" placeholder="00.0" class="input input-bordered rounded-none">
+                    <button  @click="bidProduct" :disabled="!is_logged_in" :class="btn_loading ? 'ml-10 btn btn-primary loading rounded-none': 'ml-10 btn btn-primary rounded-none'">Bid</button> 
                 <!-- <button class="btn btn-ghost">More info</button> -->
                 </div>
-                <div v-if="errorAlert" class="alert alert-warning mt-10">
+                <div v-if="errorAlert" class="alert alert-warning mt-10 rounded-none">
                     <div class="flex-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current"> 
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>                         

@@ -1,5 +1,5 @@
 <template>
-<div class="card bordered shadow-lg">
+<div class="card bordered rounded-none shadow-lg">
     <figure class="">
         <!-- <img src="https://picsum.photos/id/1005/400/250"> -->
         <img :src="front_image" class="object-contain h-36 w-full">
@@ -9,28 +9,28 @@
         <!-- <div class="badge mx-2 badge-primary">NEW</div> -->
         </h2> 
         <div v-if="type === 1" class="grid grid-flow-col gap-5 text-center auto-cols-max">
-            <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+            <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
                 <span class="font-mono text-2xl countdown">
                 <span :style="'--value:'+timer.days.value"></span>
                 </span>
                     days 
                 
             </div> 
-            <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+            <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
                 <span class="font-mono text-2xl countdown">
                 <span :style="'--value:'+timer.hours.value"></span>
                 </span>
                     hrs
                 
             </div> 
-            <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+            <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
                 <span class="font-mono text-2xl countdown">
                 <span :style="'--value:'+timer.minutes.value"></span>
                 </span>
                     min 
                 
             </div> 
-            <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+            <div class="flex flex-col p-2 bg-gray-800 rounded-none text-white">
                 <span class="font-mono text-2xl countdown">
                 <span :style="'--value:'+timer.seconds.value"></span>
                 </span>
@@ -43,7 +43,7 @@
         <span> <b>Required Balance:</b> {{ expected_value*(percentage/100) }}</span>
         <div class="justify-end card-actions">
         <router-link :to="{name: 'visitor.product', params: {id: id, type: routeParam}}">
-            <button class="btn btn-primary btn-sm">More info</button>
+            <button class="btn btn-primary btn-sm rounded-none">More info</button>
         </router-link>
         </div>
     </div>

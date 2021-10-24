@@ -3,8 +3,8 @@
     <NavBar/>
     <div class="grid grid-cols-4 gap-4">
         <div class="grid grid-cols-1 gap-4 content-start">
-            <div class="py-4 artboard artboard-demo bg-base-200 bg-neutral-content shadow-lg">
-                <ul class="menu py-3 shadow-lg bg-base-100 rounded-box w-9/12">
+            <div class="py-4 artboard artboard-demo rounded-none bg-neutral-content shadow-lg">
+                <ul class="menu py-3 shadow-lg bg-base-100 rounded-none w-9/12">
                     <li class="menu-title">
                          <span>
                             Categories
@@ -27,7 +27,7 @@
                     </a>
                     </li>
                 </ul>
-                <ul class="mt-5 menu py-3 shadow-lg bg-base-100 rounded-box w-9/12">
+                <ul class="mt-5 menu py-3 shadow-lg bg-base-100 rounded-none w-9/12">
                     <li class="menu-title">
                          <span>
                             Auction Type
@@ -52,7 +52,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-span-3 py-4 artboard artboard-demo bg-base-200 bg-neutral-content shadow-lg">
+        <div class="col-span-3 py-4 artboard artboard-demo rounded-none bg-neutral-content shadow-lg">
             <div v-if="renderComponent" class="grid grid-cols-3 gap-4 ">
                 <!-- Auction Items -->
                  <AuctionItem v-for="(auction, index) in auctions" :key="index" 
