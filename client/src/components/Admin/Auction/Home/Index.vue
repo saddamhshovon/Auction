@@ -13,29 +13,50 @@
             
 
             <div class="flex flex-wrap">
-               
-                <div class="w-full filter drop-shadow-lg stats">
-                <div class="stat place-items-center place-content-center">
-                    <div class="stat-title">Total Users</div> 
-                    <div class="stat-value">{{ users ? users : "0" }}</div> 
-                    <!-- <div class="stat-desc">Jan 1st - Feb 1st</div> -->
-                </div> 
-                <div class="stat place-items-center place-content-center">
-                    <div class="stat-title">Total Categories</div> 
-                    <div class="stat-value text-success">{{ categories ? categories : "0" }}</div> 
-                    <!-- <div class="stat-desc text-success">↗︎ 400 (22%)</div> -->
-                </div> 
-                <div class="stat place-items-center place-content-center">
-                    <div class="stat-title">Total Products</div> 
-                    <div class="stat-value text-error">{{ products ? products : "0" }}</div> 
-                    <!-- <div class="stat-desc text-error">↘︎ 90 (14%)</div> -->
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                   
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
+                        <div class="flex flex-row items-center">
+                            
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-600">total user</h5>
+                                <h3 class="font-bold text-3xl">{{ users ? users : "0" }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                   
                 </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                   
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
+                        <div class="flex flex-row items-center">
+                            
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-600">total categoryr</h5>
+                                <h3 class="font-bold text-3xl">{{ categories ? categories : "0" }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                   
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
+                        <div class="flex flex-row items-center">
+                            
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-600">Total Products</h5>
+                                <h3 class="font-bold text-3xl">{{ products ? products : "0" }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                   
                 </div>
 
 
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                    
-                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-xl p-5">
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
                         <div class="flex flex-row items-center">
                             
                             <div class="flex-1 text-right md:text-center">
@@ -48,7 +69,7 @@
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     
-                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-xl p-5">
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
                         <div class="flex flex-row items-center">
                             
                             <div class="flex-1 text-right md:text-center">
@@ -61,7 +82,7 @@
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     
-                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-xl p-5">
+                    <div class="bg-gradient-to-b from-white-200 to-white-100 border-b-4 border-white-500 rounded-lg shadow-sm p-5">
                         <div class="flex flex-row items-center">
                             
                             <div class="flex-1 text-right md:text-center">

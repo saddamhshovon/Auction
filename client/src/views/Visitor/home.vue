@@ -4,7 +4,7 @@
     <NavBar/>
     <!-- NavBar END -->
 <!-- Carousel start -->
-    <div class="carousel relative shadow-2xl bg-white rounded-box">
+    <div class="carousel relative shadow-2xl bg-white">
         <div class="carousel-inner relative overflow-hidden w-full">
         <!--Slide 1-->
             <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
@@ -82,9 +82,9 @@
                     />
     </div>
 <!-- Featured Section END -->
-<router-link :to="{name: 'visitor.product.categorised'}">
+<!-- <router-link :to="{name: 'visitor.product.categorised'}">
     <button class="btn mt-5 mb-5">Show more</button> 
-</router-link>
+</router-link> -->
 
 <!-- Footer Start -->
 <footer class="p-10 footer bg-base-200 text-base-content">
