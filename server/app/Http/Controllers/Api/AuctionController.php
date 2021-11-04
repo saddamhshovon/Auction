@@ -227,6 +227,9 @@ class AuctionController extends Controller
         $categories = Category::withCount(['auctions'=> function ($query) {
             $query->where('is_delivered','=', 1);
         }])->get()->sortByDesc('auctions_count')->take(1);
-        return $categories;
+        
+        return response()->json([
+            'category' => $categories
+        ]);
     }
 }
