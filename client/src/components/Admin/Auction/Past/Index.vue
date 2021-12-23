@@ -115,7 +115,6 @@
 
                                 <h2 class="px-4 py-3 text-xs" v-if="result">
                                 <button @click="updateAuctionStatus(index)" type="submit">
-                                <!-- <span class="mt-2 px-2 py-1 text-sm font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100"> -->
                                 <span class="btn btn-error btn-xs">
                                 Cutfee
                                 </span>  

@@ -44,9 +44,7 @@
                             Result Date <span class="-ml-1 text-red-500">*</span>
                         </span>
                         <input type="datetime-local" required v-model="form_data.result_time" class="block w-full mt-1 text-sm dark:text-gray-300 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-red form-input rounded" placeholder="Product Price"/>
-                        <!-- <div v-if="errors.close_time.length > 0" class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 mt-1 rounded relative" role="alert">
-                                <span class="block sm:inline">{{ errors.close_time[0]}}</span>
-                        </div> -->
+                        
                     </label>
                 </div>
             </div>

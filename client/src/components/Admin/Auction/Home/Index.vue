@@ -32,7 +32,7 @@
                         <div class="flex flex-row items-center">
                             
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">total categoryr</h5>
+                                <h5 class="font-bold uppercase text-gray-600">total category</h5>
                                 <h3 class="font-bold text-3xl">{{ categories ? categories : "0" }}</h3>
                             </div>
                         </div>

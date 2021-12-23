@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
+
 class AuctionController extends Controller
 {
     /**
@@ -23,15 +24,15 @@ class AuctionController extends Controller
     public function index()
     {
         $auctions = DB::table('auctions')
-        ->leftjoin('products','products.id' , '=', 'auctions.product_id')
-        ->get();
+            ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
+            ->get();
         $status     = $auctions->count() ? true : false;
-        return response()->json([   
+        return response()->json([
             'data'   => $auctions,
             'status' => $status,
         ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,17 +42,17 @@ class AuctionController extends Controller
     {
         date_default_timezone_set("Asia/Dhaka");
         $auctions = DB::table('auctions')
-        ->leftjoin('users', 'users.id', '=', 'auctions.user_id')
-         ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
-         ->select('auctions.*', 'user_id AS uid','product_id AS pid','products.product_name','users.name','products.base_price')
-        ->where('close_time', '<', Carbon::now())
-        ->latest()->get();
+            ->leftjoin('users', 'users.id', '=', 'auctions.user_id')
+            ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
+            ->select('auctions.*', 'user_id AS uid', 'product_id AS pid', 'products.product_name', 'users.name', 'products.base_price')
+            ->where('close_time', '<', Carbon::now())
+            ->latest()->get();
         $auctions1 = DB::table('auctions')
-        ->where('paying_time', '<', Carbon::now())
-        ->get();
+            ->where('paying_time', '<', Carbon::now())
+            ->get();
         $result = $auctions1->count() ? true : false;
         $status = $auctions->count() ? true : false;
-        return response()->json([   
+        return response()->json([
             'data'   => $auctions,
             'status' => $status,
             'result' => $result
@@ -61,13 +62,13 @@ class AuctionController extends Controller
     {
         date_default_timezone_set("Asia/Dhaka");
         $auctions = DB::table('auctions')
-         ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
-         ->select('auctions.*', 'product_id AS pid','products.product_name','products.base_price','products.expected_value','products.percentage', 'products.front_image', 'products.category_id')
-        ->where('auctions.start_time', '>', Carbon::now())
-        ->latest()->get();
-        
+            ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
+            ->select('auctions.*', 'product_id AS pid', 'products.product_name', 'products.base_price', 'products.expected_value', 'products.percentage', 'products.front_image', 'products.category_id')
+            ->where('auctions.start_time', '>', Carbon::now())
+            ->latest()->get();
+
         $status = $auctions->count() ? true : false;
-        return response()->json([   
+        return response()->json([
             'data'   => $auctions,
             'status' => $status,
         ]);
@@ -78,23 +79,23 @@ class AuctionController extends Controller
         date_default_timezone_set("Asia/Dhaka");
         $auctions = DB::table('auctions')
             ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
-            ->select('auctions.*', 'product_id AS pid','products.product_name','products.base_price','products.expected_value','products.percentage', 'products.front_image', 'products.category_id')
+            ->select('auctions.*', 'product_id AS pid', 'products.product_name', 'products.base_price', 'products.expected_value', 'products.percentage', 'products.front_image', 'products.category_id')
             ->where('close_time', '>=', Carbon::now())
             ->where('start_time', '<=', Carbon::now())
             ->latest()->get();
-        
+
         $status = $auctions->count() ? true : false;
-        return response()->json([   
+        return response()->json([
             'data'   => $auctions,
             'now' => date("Y-m-d H:i:s"),
             'status' => $status,
         ]);
     }
-    
+
     public function updateAuctionStatus($id)
     {
-        $admin_id=1;
-        $auctions=Auction::find($id);
+        $admin_id = 1;
+        $auctions = Auction::find($id);
         $user_id = $auctions->user_id;
         $product_id = $auctions->product_id;
         $users = User::find($user_id);
@@ -104,43 +105,55 @@ class AuctionController extends Controller
         $admindeposit = $admin->deposit;
         $percentage = $products->percentage;
         $price = $products->base_price;
-        $vat = ($percentage*$price)/100;
+        $vat = ($percentage * $price) / 100;
         Auction::where('is_delivered', 0)
-                 ->update(['is_delivered' => 2]);
+            ->update(['is_delivered' => 2]);
         User::where('id', $user_id)
-        ->update(['deposit' => $userdeposit-$vat]);
+            ->update(['deposit' => $userdeposit - $vat]);
         User::where('id', 1)
-        ->update(['deposit' => $admindeposit+$vat]);
+            ->update(['deposit' => $admindeposit + $vat]);
         Product::where('id', $product_id)
-        ->update(['is_sold' => 2]);
-        
+            ->update(['is_sold' => 2]);
     }
     public function getauctiondetails($id)
-    { 
+    {
         date_default_timezone_set("Asia/Dhaka");
         $auctions = DB::table('auctions')
-        ->leftjoin('users', 'users.id', '=', 'auctions.user_id')
-        ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
-        ->select('auctions.*', 'user_id AS uid','product_id AS pid','products.product_name',
-        'products.front_image','products.back_image','products.left_image',
-        'products.right_image','products.description','users.name','products.base_price',
-        'products.specification', 'products.percentage', 'products.expected_value', 'users.name as user_name')
-        ->where('auctions.id', '=', $id)
-        ->get();
+            ->leftjoin('users', 'users.id', '=', 'auctions.user_id')
+            ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
+            ->select(
+                'auctions.*',
+                'user_id AS uid',
+                'product_id AS pid',
+                'products.product_name',
+                'products.front_image',
+                'products.back_image',
+                'products.left_image',
+                'products.right_image',
+                'products.description',
+                'users.name',
+                'products.base_price',
+                'products.specification',
+                'products.percentage',
+                'products.expected_value',
+                'users.name as user_name'
+            )
+            ->where('auctions.id', '=', $id)
+            ->get();
 
         // ->where('auctions.start_time', '>', Carbon::now())
-        foreach($auctions as $auction)
+        foreach ($auctions as $auction)
             $can_bid = $auction->start_time < Carbon::now() ? true : false;
-       
+
         $status = $auctions->count() ? true : false;
-        return response()->json([   
+        return response()->json([
             'data'   => $auctions,
             'can_bid' => $can_bid,
             'status' => $status,
-            
+
         ]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -151,7 +164,8 @@ class AuctionController extends Controller
     public function store(StoreAuctionRequest $request)
     {
         $auction = Auction::create(
-            $request->validated());
+            $request->validated()
+        );
 
         $status = $auction ? true : false;
 
@@ -181,7 +195,6 @@ class AuctionController extends Controller
      */
     public function edit($id)
     {
-        
     }
 
     /**
@@ -209,13 +222,12 @@ class AuctionController extends Controller
     public function destroy($id)
     {
         $obj = Auction::find($id);
-        if($obj->delete())
-        {
+        if ($obj->delete()) {
             return response()->json([
                 'status' => true,
                 'message' => 'Auction Deleted'
             ], 201);
-        }else{
+        } else {
             return response()->json([
                 'status' => false,
                 'messsage' => 'Auction Delete Error'
@@ -223,9 +235,10 @@ class AuctionController extends Controller
         }
     }
 
-    public function popularCategory(){
-        $categories = Category::withCount(['auctions'=> function ($query) {
-            $query->where('is_delivered','=', 1);
+    public function popularCategory()
+    {
+        $categories = Category::withCount(['auctions' => function ($query) {
+            $query->where('is_delivered', '=', 1);
         }])->get()->sortByDesc('auctions_count')->take(1);
         return $categories;
     }
