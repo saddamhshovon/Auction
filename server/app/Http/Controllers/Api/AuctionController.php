@@ -106,6 +106,7 @@ class AuctionController extends Controller
         $price = $products->base_price;
         $vat = ($percentage*$price)/100;
         Auction::where('is_delivered', 0)
+                ->where( 'id', $id)
                  ->update(['is_delivered' => 2]);
         User::where('id', $user_id)
         ->update(['deposit' => $userdeposit-$vat]);

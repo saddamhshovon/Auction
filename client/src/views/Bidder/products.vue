@@ -21,6 +21,9 @@
                 <td v-if="product.is_delivered === 1">
                     <div class="badge badge-primary">Delivered</div> 
                 </td>
+                <td v-if="product.is_delivered === 0">
+                    <div class="badge badge-primary">Pending</div> 
+                </td>
                 <td v-else>
                     <div class="badge badge-accent">Not Delivered</div> 
                 </td> 
