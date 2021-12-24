@@ -86,6 +86,7 @@ class UserController extends Controller
         $user = $user->find($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->is_approved = 0;
         if (isset($request->password))
             $user->password = $request->password;
         $user->mobile_no = $request->mobile_no;

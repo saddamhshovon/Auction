@@ -254,7 +254,9 @@
                   >
                     <div>
                       <p class="font-semibold">
-                        {{ auction.base_price }}
+                        {{
+                          auction.expected_value * (auction.percentage / 100)
+                        }}
                       </p>
                     </div>
                   </div>
@@ -310,7 +312,8 @@ function cutFee() {
 
   for (let i = 0; i < l; i++) {
     if (auctions[i].is_delivered == 2 && auctions[i].winner_bid) {
-      sum = sum + auctions[i].base_price;
+      // sum = sum + auctions[i].base_price;
+      sum = sum + auctions[i].expected_value * (auctions[i].percentage / 100);
     }
   }
   return sum;

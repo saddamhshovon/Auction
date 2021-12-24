@@ -26,11 +26,11 @@
             <td v-if="product.is_delivered === 0">
               <div class="badge badge-primary">Pending</div>
             </td>
-            <td v-else-if="product.is_delivered === 2">
+            <!-- <td v-else-if="product.is_delivered === 2">
               <div class="badge badge-secondary">Cut Fee Applied</div>
-            </td>
+            </td> -->
             <td v-else>
-              <div class="badge badge-accent">Not Delivered</div>
+              <div class="badge badge-accent">Cut Fee Applied</div>
             </td>
           </tr>
         </tbody>

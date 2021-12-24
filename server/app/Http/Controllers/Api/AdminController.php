@@ -13,18 +13,19 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
 use Carbon\Carbon;
+
 class AdminController extends Controller
-{ 
+{
     public function Allcount()
     {
-        $users = User::where('role','=','bidder')->count();
+        $users = User::where('role', '=', 'bidder')->count();
         $categories = Category::all()->count();
         $products = Product::all()->count();
         $past_auctions = Auction::where('close_time', '<', Carbon::now())->count();
         $upcoming_auctions = Auction::where('auctions.start_time', '>', Carbon::now())->count();
         $running_auctions = Auction::where('close_time', '>=', Carbon::now())
-                                    ->where('start_time', '<=', Carbon::now())->count();
-        return response()->json([   
+            ->where('start_time', '<=', Carbon::now())->count();
+        return response()->json([
             'users'   => $users,
             'categories' => $categories,
             'products' => $products,
@@ -37,17 +38,15 @@ class AdminController extends Controller
     public function AllAuction()
     {
         $auctions = DB::table('auctions')
-        ->leftjoin('users', 'users.id', '=', 'auctions.user_id')
-         ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
-         ->select('auctions.*', 'product_id AS pid','products.product_name','users.name','products.base_price')
-        ->get();
-        
+            ->leftjoin('users', 'users.id', '=', 'auctions.user_id')
+            ->leftjoin('products', 'products.id', '=', 'auctions.product_id')
+            ->select('auctions.*', 'product_id AS pid', 'products.product_name', 'users.name', 'products.base_price', 'products.expected_value', 'products.percentage')
+            ->get();
+
         $status = $auctions->count() ? true : false;
-        return response()->json([   
+        return response()->json([
             'data'   => $auctions,
             'status' => $status,
         ]);
     }
 }
-
-    
