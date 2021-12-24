@@ -43,14 +43,18 @@
       <span>
         <b>Required Balance:</b> {{ expected_value * (percentage / 100) }}</span
       >
-      <div class="justify-end card-actions">
+      <div class="justify-center card-actions">
         <router-link
           :to="{
             name: 'visitor.product',
             params: { id: id, type: routeParam },
           }"
         >
-          <button class="btn btn-primary btn-sm rounded-none">Bid Now</button>
+          <button
+            class="btn btn-primary btn-sm rounded-none justify-content-center"
+          >
+            More Info
+          </button>
         </router-link>
       </div>
     </div>

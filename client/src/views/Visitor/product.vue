@@ -103,7 +103,16 @@
             </button>
             <!-- <button class="btn btn-ghost">More info</button> -->
           </div>
-          <div v-if="errorAlert" class="alert alert-warning mt-10 rounded-none">
+          <div
+            v-if="errorAlert"
+            class="
+              alert alert-error
+              text-red-600
+              font-semibold
+              mt-10
+              rounded-none
+            "
+          >
             <div class="flex-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
